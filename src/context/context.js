@@ -15,27 +15,19 @@ const GithubProvider = ({children})=>{
     const [isLoading,setIsLoading]=useState(false)
     
     
-    // const GithubData = async(user)=>{
-    //     const res = await axios(`${rootUrl}/users/${user}`)
-    //     // .then((res)=>{console.log(res)})
-    //     .catch((err)=>{console.log(err)})
-    //     if(res){
-    //         setUsers(res.data)
-    //         const{login,follower_url}=res.data
+    const GithubData = async(user)=>{
+        const res = await axios(`${rootUrl}/users/${user}`)
+        // .then((res)=>{console.log(res)})
+        .catch((err)=>{console.log(err)})
 
-    //        const followers = await axios(`${follower_url}?per_page=100`)
-    //     //    console.log(followers);            // await Promise.allSettled([
-    //         //     axios(`${rootUrl}/users/${login}/repos?per_page=100`),
-    //         //     axios(`${follower_url}?per_page=100`),
-    //         // ])
-    //         .then((res)=>{console.log(followers)})
-    //     }
-    // }
+        console.log(res);
+        
+    }
     
-    // useEffect(()=>{
-    //     GithubData('john-smilga')
-    // })
-    return <GithubContext.Provider value={{users,repo,follower}}>{children}</GithubContext.Provider>
+    useEffect(()=>{
+        GithubData('john-smilga')
+    })
+    return <GithubContext.Provider value={{users,repo,follower,GithubData}}>{children}</GithubContext.Provider>
 }
 
 export{GithubContext,GithubProvider}
